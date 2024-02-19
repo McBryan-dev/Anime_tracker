@@ -1,22 +1,65 @@
-<template>
-  <main>
+<template class="m-0 p-0 box-border font-serif">
+  <main class="p-6 gap-4" >
 
-    <h1>Mc Anime Tracker</h1>
-
-    <form @submit.prevent="searchAnime">
+    <h1 class="text-6xl font-semibold font-serif" >Mc Anime Tracker</h1>
+    <br />
+    <form @submit.prevent="searchAnime" class="justify-center flex gap-3">
       <input 
         type="text"
         placeholder="Search an anime"
         v-model="query"
         @input="handleInput"
+        class="p-1 h-8 mt-auto mb-auto"
       >
 
-      <button type="submit">Search</button>
+      <button type="submit" class="bg-zinc-300 p-2">Search</button>
     </form>
 
     <div v-if="search_results.length > 0" class="results">
-      <div class="results"></div>
+      
+      <div class="results" v-for="anime in search_results" :key="anime.id">
+        
+        <img :src="anime.images.jpg.image_url" />
+
+        <div class="details">
+          <h3>{{anime.title}}</h3>
+          <p v-if="anime.synopsis">{{anime.synopsis}}...</p>
+          <span class="flex-1"></span>
+          <button @click="addAnime(anime)">ADD TO MY ANIME</button>
+        </div>
     </div>
+
+
+    </div>
+      
+      <div class="myAnime mt-4" v-if="my_anime.length > 0">
+
+        <h2 class="text-2xl font-bold">My Anime</h2>
+        <br />
+        <div v-for="anime in my_anime_asc" :key="anime.id" class="anime text-start p-2 mr-auto">
+          <img :src="anime.image" class="img_fluid" />
+          <h3 class="p-2 text-xl font-semibold">{{anime.title}}</h3>
+          <div class="flex-1"></div>
+          <span class="episodes p-2 text-xl">
+            {{anime.watched_episodes}} / {{anime.total_episodes}}
+          </span>
+          <button 
+            v-if="anime.total_episodes !== anime.watched_episodes"
+            @click="increaseWatch(anime)"
+            class="p-1"
+          >
+            +
+          </button> 
+
+          <button 
+            v-if="anime.watched_episodes > 0"
+            @click="decreaseWatch(anime)"
+          >
+            -
+          </button> 
+        </div>
+
+      </div>
 
   </main>
 </template>
@@ -63,7 +106,7 @@
       watched_episodes: 0
     })
 
-    localStorage.setItem('my_anime', JSON.stringiy(my_anime.value))
+    localStorage.setItem('my_anime', JSON.stringify(my_anime.value))
   }
 
   const increaseWatch = anime => {
