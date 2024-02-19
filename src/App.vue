@@ -1,5 +1,5 @@
 <template class="m-0 p-0 box-border font-serif">
-  <main class="p-6 gap-4" >
+  <main class="p-6 gap-4 mx-auto text-center" >
 
     <h1 class="text-6xl font-semibold font-serif" >Mc Anime Tracker</h1>
     <br />
@@ -27,14 +27,18 @@
           <span class="flex-1"></span>
           <button @click="addAnime(anime)">ADD TO MY ANIME</button>
         </div>
+      </div>
+
     </div>
 
-
+    <div v-if="my_anime.length > 0" class="text-center mt-3">
+      <h2 class="text-2xl font-bold">My Anime</h2>
     </div>
       
-      <div class="myAnime mt-4" v-if="my_anime.length > 0">
+    <div class="grid grid-cols-3 align-center justify-center items-center text-cenetr">
 
-        <h2 class="text-2xl font-bold">My Anime</h2>
+      <div class="myAnime mt-4 grid gap-4" v-if="my_anime.length > 0">
+
         <br />
         <div v-for="anime in my_anime_asc" :key="anime.id" class="anime text-start p-2 mr-auto">
           <img :src="anime.image" class="img_fluid" />
@@ -60,6 +64,8 @@
         </div>
 
       </div>
+
+    </div>
 
   </main>
 </template>
