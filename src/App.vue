@@ -1,5 +1,5 @@
 <template class="m-0 p-0 box-border font-serif">
-  <main class="p-6 gap-4 mx-auto text-center" >
+  <main class="p-6 gap-4" >
 
     <h1 class="text-6xl font-semibold font-serif" >Mc Anime Tracker</h1>
     <br />
@@ -35,9 +35,9 @@
       <h2 class="text-2xl font-bold">My Anime</h2>
     </div>
       
-    <div class="grid grid-cols-3 align-center justify-center items-center text-cenetr">
+    <div class="grid grid-cols-3 mx-auto align-center justify-center items-center text-center">
 
-      <div class="myAnime mt-4 grid gap-4" v-if="my_anime.length > 0">
+      <div class="myAnime mt-4 flex grid grid-cols-1 align-center justify-center items-center text-center" v-if="my_anime.length > 0">
 
         <br />
         <div v-for="anime in my_anime_asc" :key="anime.id" class="anime text-start p-2 mr-auto">
