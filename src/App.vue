@@ -35,12 +35,12 @@
       <h2 class="text-2xl font-bold">My Anime</h2>
     </div>
       
-    <div class="grid grid-cols-3 mx-auto align-center justify-center items-center text-center">
+    <div class="grid grid-cols-1 mx-auto align-center justify-center items-center text-center">
 
       <div class="myAnime mt-4 flex grid grid-cols-1 align-center justify-center items-center text-center" v-if="my_anime.length > 0">
 
         <br />
-        <div v-for="anime in my_anime_asc" :key="anime.id" class="anime text-start p-2 mr-auto">
+        <div v-for="anime in my_anime_asc" :key="anime.id" class="anime text-start p-2 mr-auto ml-auto">
           <img :src="anime.image" class="img_fluid" />
           <h3 class="p-2 text-xl font-semibold">{{anime.title}}</h3>
           <div class="flex-1"></div>
